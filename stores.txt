@@ -1,0 +1,8 @@
+# Sample Shopify stores for size chart extraction
+# Add one store URL per line
+# Lines starting with # are ignored
+
+westside.com
+freakins.com
+littleboxindia.com
+suqah.com 

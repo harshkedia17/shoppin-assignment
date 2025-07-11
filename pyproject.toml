@@ -1,0 +1,35 @@
+[project]
+name = "assignment"
+version = "0.1.0"
+description = "Shopify Size Chart Extractor Service"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "aiohttp>=3.9.0",
+    "beautifulsoup4>=4.12.0",
+    "lxml>=4.9.0",
+    "pydantic>=2.0.0",
+    "tenacity>=8.2.0",
+    "asyncio-throttle>=1.0.2",
+    "fake-useragent>=1.4.0",
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-mock>=3.11.0",
+    "rich>=13.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "flake8>=6.0.0",
+    "mypy>=1.0.0",
+    "requests>=2.32.4",
+    "selenium>=4.34.2",
+    "google-genai>=1.25.0",
+    "pillow>=11.3.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black>=23.0.0",
+    "flake8>=6.0.0",
+    "mypy>=1.0.0",
+    "pytest-cov>=4.0.0",
+]
