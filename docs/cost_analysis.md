@@ -2,281 +2,350 @@
 
 ## Executive Summary
 
-This document analyzes the costs of running the Shopify Size Chart Extractor service at various scales. The analysis covers infrastructure, operational costs, and strategies for cost optimization. The service is designed to be cost-effective while maintaining high reliability and performance.
+This document provides a comprehensive cost analysis for running the Shopify Size Chart Extractor service at scale. The analysis includes all major cost components: infrastructure, Gemini API usage, browser automation, and operational expenses. The service uses a hybrid approach combining HTML parsing, Selenium automation, and Gemini 2.5 Flash API for image-based size chart extraction.
 
-## Assumptions
+## Service Architecture Overview
+
+The service employs different extraction strategies based on the store:
+
+- **HTML Parsing**: Westside (direct HTML table extraction)
+- **Selenium + HTML Parsing**: LittleBoxIndia (JavaScript-rendered content)
+- **Selenium + Gemini API**: Freakins, Squah (image-based size charts)
+
+## Key Assumptions
 
 - Average of 100 products with size charts per store
-- Extraction runs once per month for each store
+- Extraction runs once per month
 - Average product page size: 150KB
-- Average response time per request: 2 seconds
+- Average size chart image: 200KB
+- ~50% of stores require Gemini API (image-based extraction)
+- ~75% of stores require Selenium (JavaScript rendering)
 - Rate limit: 1 request per second per store
-- Cloud deployment on AWS/GCP/Azure
+- Cloud deployment on AWS/GCP
 
-## Cost Projections
+## Gemini 2.5 Flash API Pricing
+
+Based on the latest pricing updates and our specific usage profile:
+
+- **Input (images)**: $0.30 per 1M tokens
+- **Output**: $2.50 per 1M tokens
+- **Average tokens per image**: ~800 input + ~300 output (total ~1,100 tokens)
+- **Cost per image extraction**: ~$0.00099 (calculated as (800/1M)*$0.30 + (300/1M)*$2.50)
+
+*Note: Gemini 2.5 Flash no longer has a separate "thinking" vs. "non-thinking" price, simplifying cost calculations. This update reflects the stable version pricing as of June 17, 2025.* [https://developers.googleblog.com/en/gemini-2-5-thinking-model-updates/](https://developers.googleblog.com/en/gemini-2-5-thinking-model-updates/)
+
+## Detailed Cost Projections
 
 ### 1,000 Stores (Monthly)
 
-**Data Volume:**
+**Data Processing Volume:**
 
-- Products to extract: 100,000
-- HTTP requests: ~120,000 (including retries and discovery)
-- Data transfer: ~18GB
+- Total products to process: 100,000
+- Products requiring Gemini API: ~50,000
+- HTTP requests: ~120,000 (including retries)
+- Selenium browser sessions: ~75,000
+- Data transfer: ~25GB
 
-**Infrastructure Costs:**
+**Cost Breakdown:**
 
-- **Compute (EC2/Cloud Run)**: $50-100
-  - t3.medium instance or equivalent
-  - 4GB RAM, 2 vCPU
-  - Run time: ~35 hours/month
-- **Storage**: $5
-  - JSON output storage: ~500MB
-  - Logs and temporary data: ~2GB
-- **Data Transfer**: $2
-  - Egress charges for 18GB
-- **Monitoring/Logging**: $10
+1.  **Gemini API Costs**: $49.50
 
-**Total Monthly Cost: $67-117**
+    -   50,000 image extractions × $0.00099 = $49.50
 
-### 10,000 Stores (Monthly)
+2.  **Compute Infrastructure**: $80-120
 
-**Data Volume:**
+    -   EC2 t3.large (8GB RAM, 2 vCPU) for main processing
+    -   Additional instance for Selenium Chrome browsers
+    -   Run time: ~40 hours/month
 
-- Products to extract: 1,000,000
-- HTTP requests: ~1,200,000
-- Data transfer: ~180GB
+3.  **Selenium/Chrome Resources**: $30
 
-**Infrastructure Costs:**
+    -   Headless Chrome instances
+    -   Additional memory overhead
 
-- **Compute**: $300-500
-  - Multiple instances or auto-scaling group
-  - c5.xlarge or equivalent (8GB RAM, 4 vCPU)
-  - Run time: ~350 hours distributed
-- **Storage**: $20
-  - JSON output: ~5GB
-  - Logs: ~20GB
-- **Data Transfer**: $20
-  - Egress charges for 180GB
-- **Monitoring/Logging**: $50
-- **Queue Service (SQS/Pub/Sub)**: $10
+4.  **Storage**: $8
 
-**Total Monthly Cost: $400-600**
+    -   JSON output: ~1GB
+    -   Logs: ~5GB
+    -   Temporary browser cache: ~10GB
+
+5.  **Data Transfer**: $3
+
+    -   Egress charges for ~25GB
+
+6.  **Monitoring/Logging**: $15
+
+**Total Monthly Cost: $185.50 - $225.50**
+**Cost per store: $0.19 - $0.23**
+
 
 ### 100,000 Stores (Monthly)
 
-**Data Volume:**
+**Data Processing Volume:**
 
-- Products to extract: 10,000,000
+- Total products: 10,000,000
+- Products requiring Gemini API: ~5,000,000
 - HTTP requests: ~12,000,000
-- Data transfer: ~1.8TB
+- Selenium browser sessions: ~7,500,000
+- Data transfer: ~2.5TB
 
-**Infrastructure Costs:**
+**Cost Breakdown:**
 
-- **Compute**: $2,000-3,500
-  - Kubernetes cluster or managed container service
-  - 10-20 nodes, auto-scaling
-  - Run time: ~3,500 hours distributed
-- **Storage**: $150
-  - JSON output: ~50GB
-  - Logs: ~200GB (with compression)
-- **Data Transfer**: $200
-  - Egress charges for 1.8TB
-- **Database (for job management)**: $100
-  - PostgreSQL or similar
-- **Monitoring/Logging**: $300
-- **Queue Service**: $100
-- **CDN/Proxy Service**: $500-1,000
-  - For IP rotation and caching
+1.  **Gemini API Costs**: $4,950
 
-**Total Monthly Cost: $3,350-5,450**
+    -   5,000,000 image extractions × $0.00099 = $4,950
+
+2.  **Compute Infrastructure**: $3,000-4,000
+
+    -   Kubernetes cluster with 15-25 nodes
+    -   Auto-scaling based on load
+    -   Run time: ~4,000 hours distributed
+
+3.  **Selenium Grid at Scale**: $1,500
+
+    -   Distributed Selenium Grid
+    -   100+ concurrent browser instances
+    -   Dedicated node pool for browsers
+
+4.  **Storage**: $300
+
+    -   JSON output: ~100GB
+    -   Logs: ~500GB (compressed)
+    -   Browser cache: ~1TB (ephemeral)
+
+5.  **Data Transfer**: $300
+
+    -   Egress charges for ~2.5TB
+
+6.  **Database Cluster**: $300
+
+    -   Managed PostgreSQL with read replicas
+
+7.  **Queue/Streaming Service**: $200
+
+    -   Kafka or managed queue service
+
+8.  **CDN/Proxy Service**: $800
+
+    -   IP rotation service
+    -   Request distribution
+
+9.  **Monitoring/Observability**: $500
+    -   Full APM and logging stack
+    -   Custom metrics and alerting
+
+**Total Monthly Cost: $10,850 - $11,850**
+**Cost per store: $0.11 - $0.12**
 
 ## Primary Cost Drivers
 
-1. **Compute Resources (40-60% of costs)**
+### 1. **Gemini API Costs (30-50% at scale)**
 
-   - CPU and memory for concurrent extraction
-   - Higher scales require distributed processing
+- Linear scaling with image-based extractions
+- Significant portion of total cost
+- No volume discounts in free tier
 
-2. **Proxy/IP Rotation Services (15-25% at scale)**
+### 2. **Compute Resources (25-35%)**
 
-   - Essential for avoiding blocks at high volume
-   - Costs increase linearly with request volume
+- Browser automation overhead
+- Concurrent processing requirements
+- Memory-intensive Chrome instances
 
-3. **Data Transfer (10-15%)**
+### 3. **Selenium/Browser Infrastructure (10-15%)**
 
-   - Downloading HTML pages
-   - Increases linearly with stores
+- Headless Chrome resource usage
+- Grid management at scale
+- Browser process isolation
 
-4. **Storage and Database (5-10%)**
+### 4. **Data Transfer & Storage (5-10%)**
 
-   - Storing results and logs
-   - Job queue management at scale
+- Image downloads for Gemini
+- HTML page downloads
+- Result storage
 
-5. **Monitoring and Logging (5-10%)**
-   - Critical for debugging and optimization
-   - Costs increase with data volume
+### 5. **Supporting Services (10-15%)**
 
-## Cost Reduction Strategies
+- Database for job management
+- Queue services
+- Monitoring and logging
 
-### 1. Architecture Optimizations
+## Cost Optimization Strategies
 
-**Serverless Architecture**
+### 1. **Gemini API Optimization**
 
-- Use AWS Lambda or Google Cloud Functions
-- Pay only for actual compute time
-- Automatic scaling
-- **Potential savings: 30-50%**
+**Intelligent Image Detection**
 
-**Caching Strategy**
+- Pre-filter products likely to have image-based charts
+- Implement image classification before Gemini calls
+- **Potential savings: 20-30% on API costs**
 
-- Cache product listings (products.json)
-- Cache static resources
-- Implement smart cache invalidation
-- **Potential savings: 20-30%**
+**Use OCR Model Instead of Gemini API**
 
-**Request Optimization**
+**Image Preprocessing**
 
-- Batch API requests where possible
-- Use HEAD requests to check for changes
-- Implement incremental updates
-- **Potential savings: 15-25%**
+- Compress images before sending to Gemini
+- Crop to relevant sections
+- **Potential savings: 10-15% on API costs**
 
-### 2. Infrastructure Optimizations
+**Caching Gemini Results**
 
-**Spot Instances**
+- Cache extracted size charts
+- Detect unchanged products
+- **Potential savings: 30-40% on repeat extractions**
 
-- Use spot/preemptible instances for batch processing
-- 60-80% cheaper than on-demand
-- **Potential savings: 40-60% on compute**
+### 2. **Infrastructure Optimization**
 
-**Reserved Instances**
+**Hybrid Extraction Strategy**
 
-- For predictable workloads
-- 1-3 year commitments
-- **Potential savings: 30-50%**
+- Route stores to appropriate extractors
+- Avoid Selenium when not needed
+- **Potential savings: 25-35% on compute**
 
-**Multi-Region Strategy**
+**Serverless for Gemini Processing**
 
-- Process stores in their local regions
-- Reduce data transfer costs
-- **Potential savings: 10-15%**
+- Use Lambda/Cloud Functions for image extraction
+- Pay only for processing time
+- **Potential savings: 20-30% on compute**
 
-### 3. Operational Optimizations
+**Browser Pool Management**
 
-**Intelligent Scheduling**
+- Reuse browser instances
+- Implement efficient queue system
+- **Potential savings: 15-20% on resources**
 
-- Process during off-peak hours
-- Leverage time zone differences
-- **Potential savings: 10-20%**
+### 3. **Architectural Improvements**
 
-**Compression**
+**Store Classification System**
 
-- Compress stored data (gzip)
-- Compress logs aggressively
-- **Potential savings: 60-70% on storage**
+```python
+# Classify stores by extraction method needed
+STORE_CLASSIFICATIONS = {
+    'html_only': ['westside.com'],  # No Selenium, No Gemini
+    'selenium_only': ['littleboxindia.com'],  # Selenium, No Gemini
+    'selenium_gemini': ['freakins.com', 'squah.com']  # Both needed
+}
+```
 
-**Selective Extraction**
+**Tiered Processing Pipeline**
 
-- Track which products have size charts
-- Skip products unlikely to have charts
-- **Potential savings: 20-40% on requests**
+1. Try HTML extraction first (cheapest)
+2. Fall back to Selenium if needed
+3. Use Gemini only for image-based charts
 
-### 4. Scale-Specific Strategies
+**Potential savings: 40-50% overall**
+
+### 4. **Scale-Specific Optimizations**
 
 **For 1,000 Stores:**
 
-- Single instance with scheduled jobs
-- Local caching
-- Basic monitoring
+- Single instance with job queue
+- Local Chrome instance
+- Batch Gemini API calls
+- **Optimized cost: $150-180/month**
 
 **For 10,000 Stores:**
 
 - Containerized deployment
-- Distributed queue system
-- Implement caching layer
-- Use spot instances
+- Selenium Grid with 5-10 browsers
+- Implement Gemini result caching
+- **Optimized cost: $1,000-1,200/month**
 
 **For 100,000 Stores:**
 
-- Kubernetes with auto-scaling
-- Dedicated proxy service
+- Kubernetes with node pools
+- Distributed Selenium Grid
+- Gemini request batching
 - Multi-region deployment
-- Custom scheduling algorithm
-- Implement data pipeline
+- **Optimized cost: $8,000-9,000/month**
 
 ## Recommended Architecture by Scale
 
 ### Small Scale (< 1,000 stores)
 
+```yaml
+Single Instance Architecture:
+  - EC2/GCE instance (t3.large)
+  - Local Chrome browser
+  - SQLite job queue
+  - Direct Gemini API calls
+  - Basic CloudWatch monitoring
 ```
-Single EC2/VM Instance
-├── Local SQLite for job queue
-├── Local file storage
-└── CloudWatch/Stackdriver basics
-```
-
-**Monthly cost: $50-100**
 
 ### Medium Scale (1,000-10,000 stores)
 
+```yaml
+Distributed Architecture:
+  - Auto-scaling group (3-5 instances)
+  - Selenium Grid (Docker Swarm)
+  - PostgreSQL RDS
+  - SQS for job queue
+  - Gemini API with retry logic
+  - ElastiCache for result caching
 ```
-Auto-scaling Group
-├── RDS PostgreSQL
-├── S3/GCS for storage
-├── SQS/Pub/Sub for job queue
-├── ElastiCache for caching
-└── Comprehensive monitoring
-```
-
-**Monthly cost: $300-600**
 
 ### Large Scale (> 10,000 stores)
 
+```yaml
+Kubernetes Architecture:
+  - Multi-node K8s cluster
+  - Distributed Selenium Grid
+  - PostgreSQL cluster with read replicas
+  - Kafka for job streaming
+  - Gemini API with request pooling
+  - Redis cluster for caching
+  - Prometheus + Grafana monitoring
 ```
-Kubernetes Cluster
-├── Managed PostgreSQL cluster
-├── Object storage with lifecycle
-├── Redis cluster for caching
-├── Kafka for job streaming
-├── Dedicated proxy service
-├── Full observability stack
-└── Multi-region deployment
-```
 
-**Monthly cost: $3,000-5,000**
+## Cost Comparison with Alternatives
 
-## Trade-offs and Considerations
+### Manual Extraction
 
-### Reliability vs Cost
+- Human cost: ~$0.50-1.00 per store
+- Time: 5-10 minutes per store
+- Our service: $0.12-0.24 per store (automated)
 
-- Higher reliability requires redundancy
-- Implement circuit breakers and retries
-- Balance between uptime and cost
+### Competing Services
 
-### Speed vs Cost
+- Web scraping APIs: $0.30-0.50 per store
+- Full-service extraction: $1.00-2.00 per store
+- Our service provides better value with Gemini integration
 
-- Faster extraction requires more concurrent resources
-- Consider business requirements for data freshness
 
-### Accuracy vs Cost
+## Risk Mitigation
 
-- More thorough extraction increases requests
-- Balance completeness with resource usage
+### API Rate Limits
+
+- Implement exponential backoff
+- Distribute requests across time
+- Use multiple API keys if needed
+
+### Cost Overruns
+
+- Set up billing alerts
+- Implement cost caps
+- Regular usage monitoring
+
+### Service Reliability
+
+- Implement circuit breakers
+- Graceful degradation
+- Fallback extraction methods
 
 ## Conclusion
 
-The Shopify Size Chart Extractor can be operated cost-effectively at all scales with proper architecture choices. Key recommendations:
+The Shopify Size Chart Extractor service can operate cost-effectively at all scales with proper architecture and optimization. The inclusion of Gemini API adds significant capability for image-based extraction but requires careful cost management.
 
-1. **Start simple**: Use serverless or single instance for small scales
-2. **Scale gradually**: Move to distributed architecture as needed
-3. **Optimize continuously**: Monitor costs and optimize based on actual usage
-4. **Leverage cloud services**: Use managed services to reduce operational overhead
-5. **Implement caching**: Significant cost savings with minimal complexity
+**Key Takeaways:**
 
-The projected costs are manageable and scale sub-linearly due to optimization opportunities. With the recommended strategies, the service can maintain costs at:
+1. **Gemini API is the largest cost driver** but provides essential functionality
+2. **Hybrid approach** (HTML + Selenium + Gemini) optimizes costs
+3. **Caching and intelligent routing** can reduce costs by 40-50%
+4. **Costs scale sub-linearly** with proper optimization
 
-- **$0.05-0.12 per store** at 1,000 stores
-- **$0.04-0.06 per store** at 10,000 stores
-- **$0.03-0.05 per store** at 100,000 stores
+**Final Cost Summary (Optimized):**
 
-This demonstrates excellent economies of scale while maintaining service quality.
+- **1,000 stores**: $0.15-0.18 per store
+- **10,000 stores**: $0.10-0.12 per store
+- **100,000 stores**: $0.08-0.09 per store
+
+This demonstrates strong economies of scale while maintaining high-quality extraction capabilities across diverse store implementations.
