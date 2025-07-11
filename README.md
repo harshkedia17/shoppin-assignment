@@ -277,7 +277,3 @@ This will show:
 - **Rate Limiting**: Start conservative (2-3 seconds) and decrease if successful
 - **Product Limits**: Use `--max-products` to limit extraction scope
 - **Memory Usage**: Large extractions may use significant memory; process in batches if needed
-
-## License
-
-[Add your license here]
