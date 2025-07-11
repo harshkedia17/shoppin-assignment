@@ -2,7 +2,7 @@ import logging
 from typing import Optional
 
 from .base import BaseExtractor
-from ..models.size_chart import Product
+from ..models.size_chart import Product, StoreResult
 from ..utils.selenium_client import SeleniumClient
 
 logger = logging.getLogger(__name__)
@@ -31,6 +31,13 @@ class LittleBoxIndiaExtractor(BaseExtractor):
             return None
         finally:
             await self.selenium_client.close()
+
+    async def extract_all(self) -> StoreResult:
+        try:
+            result = await super().extract_all()
+            return result
+        finally:
+            await self.close()
 
     async def close(self):
         """Clean up resources."""

@@ -23,7 +23,6 @@ class SizeChartExtractorService:
 
         rate_limiter = RateLimiter(
             rate_limit=self.config.rate_limit_delay,
-            burst=self.config.concurrent_requests
         )
 
         async with HTTPClient(

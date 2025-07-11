@@ -7,7 +7,7 @@ from pydantic import HttpUrl
 from src.utils.gemini_extractor import GeminiSizeChartExtractor
 
 from .base import BaseExtractor
-from ..models.size_chart import Product
+from ..models.size_chart import Product, StoreResult
 from ..utils.selenium_client import SeleniumClient
 
 logger = logging.getLogger(__name__)
@@ -54,9 +54,13 @@ class SquahExtractor(BaseExtractor):
         except Exception as e:
             logger.error(f"Failed to extract from {product_url}: {e}")
             return None
+
+    async def extract_all(self) -> StoreResult:
+        try:
+            result = await super().extract_all()
+            return result
         finally:
-            await self.selenium_client.close()
+            await self.close()
 
     async def close(self):
-        """Clean up resources."""
         await self.selenium_client.close()

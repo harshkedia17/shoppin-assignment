@@ -4,6 +4,8 @@ Factory for creating store-specific extractors.
 import logging
 from typing import Dict, Type
 
+from src.extractors.squah import SquahExtractor
+
 from .base import BaseExtractor
 from .westside import WestsideExtractor
 from .littleboxindia import LittleBoxIndiaExtractor
@@ -20,7 +22,7 @@ class ExtractorFactory:
         'westside.com': WestsideExtractor,
         'littleboxindia.com': LittleBoxIndiaExtractor,
         'freakins.com': FreakinsExtractor,
-        'thelittlebox.in': LittleBoxIndiaExtractor,
+        'www.squah.com': SquahExtractor,
     }
 
     @classmethod
@@ -29,7 +31,8 @@ class ExtractorFactory:
         store_url: str,
         http_client: HTTPClient,
         rate_limiter: RateLimiter,
-        max_products: int = 100
+        max_products: int = 100,
+        concurrent_requests: int = 1
     ) -> BaseExtractor:
 
         store_domain = store_url.lower().strip('/')
@@ -46,5 +49,6 @@ class ExtractorFactory:
             store_url=store_url,
             http_client=http_client,
             rate_limiter=rate_limiter,
-            max_products=max_products
+            max_products=max_products,
+            # concurrent_requests=concurrent_requests
         )
