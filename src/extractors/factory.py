@@ -4,7 +4,7 @@ Factory for creating store-specific extractors.
 import logging
 from typing import Dict, Type
 
-from src.extractors.squah import SquahExtractor
+from src.extractors.suqah import SuqahExtractor
 
 from .base import BaseExtractor
 from .westside import WestsideExtractor
@@ -19,10 +19,10 @@ logger = logging.getLogger(__name__)
 class ExtractorFactory:
     """Factory for creating store-specific extractors."""
     EXTRACTORS: Dict[str, Type[BaseExtractor]] = {
-        'westside.com': WestsideExtractor,
-        'littleboxindia.com': LittleBoxIndiaExtractor,
-        'freakins.com': FreakinsExtractor,
-        'www.squah.com': SquahExtractor,
+        'www.westside.com': WestsideExtractor,
+        'www.littleboxindia.com': LittleBoxIndiaExtractor,
+        'www.freakins.com': FreakinsExtractor,
+        'www.suqah.com': SuqahExtractor,
     }
 
     @classmethod
@@ -40,13 +40,18 @@ class ExtractorFactory:
             store_domain = store_domain[7:]
         elif store_domain.startswith('https://'):
             store_domain = store_domain[8:]
+        if not store_domain.startswith('www.'):
+            store_domain = 'www.' + store_domain
 
-        extractor_class = cls.EXTRACTORS.get(store_domain, WestsideExtractor)
+
+        extractor_class = cls.EXTRACTORS.get(store_domain)
+        if not extractor_class:
+            logger.warning(f"No specific extractor found for {store_domain}, using default")
+            extractor_class = WestsideExtractor
 
         logger.info(f"Using {extractor_class.__name__} for {store_domain}")
-
         return extractor_class(
-            store_url=store_url,
+            store_url=store_domain,
             http_client=http_client,
             rate_limiter=rate_limiter,
             max_products=max_products,

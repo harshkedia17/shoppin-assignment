@@ -13,8 +13,8 @@ from ..utils.selenium_client import SeleniumClient
 logger = logging.getLogger(__name__)
 
 
-class SquahExtractor(BaseExtractor):
-    """Extractor for Squah using Selenium for JavaScript rendering."""
+class SuqahExtractor(BaseExtractor):
+    """Extractor for Suqah using Selenium for JavaScript rendering."""
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
