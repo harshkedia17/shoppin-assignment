@@ -1,12 +1,6 @@
-"""
-Tests for extractors.
-"""
 import pytest
-import asyncio
 from unittest.mock import Mock, AsyncMock, patch
-
-from src.extractors.base import BaseExtractor
-from src.extractors.generic_shopify import GenericShopifyExtractor
+from src.extractors.westside import WestsideExtractor
 from src.utils.http_client import HTTPClient
 from src.utils.rate_limiter import RateLimiter
 from src.models.size_chart import Product, SizeChart
@@ -34,7 +28,7 @@ class TestGenericShopifyExtractor:
     @pytest.fixture
     def extractor(self, mock_http_client, mock_rate_limiter):
         """Create an extractor instance."""
-        return GenericShopifyExtractor(
+        return WestsideExtractor(
             store_url="test.com",
             http_client=mock_http_client,
             rate_limiter=mock_rate_limiter,
