@@ -39,13 +39,9 @@ class FreakinsExtractor(BaseExtractor):
             html = await self.selenium_client.get_rendered_html(product_url)
             soup = BeautifulSoup(html, 'lxml')
             div = soup.find('div', class_='newsletter-modal')
-            print(div, 'div')
             if div:
                 img = div.find('img')
-                print(img, 'img')
                 if img:
-                    print(img['src'], 'img src')
-                    
                     size_chart = await self.gemini_extractor.extract_table(str(img['src']))
 
             return Product(
