@@ -1,0 +1,10 @@
+[
+  {
+    "store_name": "freakins.com",
+    "extraction_date": "2025-07-11T16:56:28.049242+00:00",
+    "products": [],
+    "errors": [
+      "Extraction failed: BaseExtractor.__init__() got an unexpected keyword argument 'concurrent_requests'"
+    ]
+  }
+]

@@ -1,0 +1,376 @@
+[
+  {
+    "store_name": "www.westside.com",
+    "extraction_date": "2025-07-12T04:09:40.851420+00:00",
+    "products": [
+      {
+        "product_title": "Wardrobe Navy Solid Coat",
+        "product_url": "https://www.westside.com/products/wardrobe-navy-solid-coat-301025826",
+        "size_chart": {
+          "headers": [
+            "Size (A)",
+            "To Fit Bust (B)",
+            "To Fit Waist (C)",
+            "To Fit Hip (D)"
+          ],
+          "rows": [
+            {
+              "Size (A)": "XXS",
+              "To Fit Bust (B)": "78 CM",
+              "To Fit Waist (C)": "62 CM",
+              "To Fit Hip (D)": "86 CM"
+            },
+            {
+              "Size (A)": "XS",
+              "To Fit Bust (B)": "83 CM",
+              "To Fit Waist (C)": "67 CM",
+              "To Fit Hip (D)": "91 CM"
+            },
+            {
+              "Size (A)": "S",
+              "To Fit Bust (B)": "88 CM",
+              "To Fit Waist (C)": "72 CM",
+              "To Fit Hip (D)": "96 CM"
+            },
+            {
+              "Size (A)": "M",
+              "To Fit Bust (B)": "93 CM",
+              "To Fit Waist (C)": "77 CM",
+              "To Fit Hip (D)": "101 CM"
+            },
+            {
+              "Size (A)": "L",
+              "To Fit Bust (B)": "98 CM",
+              "To Fit Waist (C)": "82 CM",
+              "To Fit Hip (D)": "106 CM"
+            },
+            {
+              "Size (A)": "XL",
+              "To Fit Bust (B)": "103 CM",
+              "To Fit Waist (C)": "87 CM",
+              "To Fit Hip (D)": "111 CM"
+            },
+            {
+              "Size (A)": "2XL",
+              "To Fit Bust (B)": "108 CM",
+              "To Fit Waist (C)": "92 CM",
+              "To Fit Hip (D)": "116 CM"
+            }
+          ]
+        }
+      },
+      {
+        "product_title": "Bombay Paisley Blue Floral Off-Shoulder Cotton Top",
+        "product_url": "https://www.westside.com/products/bombay-paisley-blue-floral-off-shoulder-cotton-top-301025281",
+        "size_chart": {
+          "headers": [
+            "Size (A)",
+            "To Fit Bust (B)",
+            "To Fit Waist (C)",
+            "To Fit Hip (D)"
+          ],
+          "rows": [
+            {
+              "Size (A)": "XXS",
+              "To Fit Bust (B)": "78 CM",
+              "To Fit Waist (C)": "62 CM",
+              "To Fit Hip (D)": "86 CM"
+            },
+            {
+              "Size (A)": "XS",
+              "To Fit Bust (B)": "83 CM",
+              "To Fit Waist (C)": "67 CM",
+              "To Fit Hip (D)": "91 CM"
+            },
+            {
+              "Size (A)": "S",
+              "To Fit Bust (B)": "88 CM",
+              "To Fit Waist (C)": "72 CM",
+              "To Fit Hip (D)": "96 CM"
+            },
+            {
+              "Size (A)": "M",
+              "To Fit Bust (B)": "93 CM",
+              "To Fit Waist (C)": "77 CM",
+              "To Fit Hip (D)": "101 CM"
+            },
+            {
+              "Size (A)": "L",
+              "To Fit Bust (B)": "98 CM",
+              "To Fit Waist (C)": "82 CM",
+              "To Fit Hip (D)": "106 CM"
+            },
+            {
+              "Size (A)": "XL",
+              "To Fit Bust (B)": "103 CM",
+              "To Fit Waist (C)": "87 CM",
+              "To Fit Hip (D)": "111 CM"
+            },
+            {
+              "Size (A)": "2XL",
+              "To Fit Bust (B)": "108 CM",
+              "To Fit Waist (C)": "92 CM",
+              "To Fit Hip (D)": "116 CM"
+            }
+          ]
+        }
+      },
+      {
+        "product_title": "Bombay Paisley Blue Floral Design Ruffled Cotton Skirt",
+        "product_url": "https://www.westside.com/products/bombay-paisley-blue-floral-design-ruffled-cotton-skirt-301025863",
+        "size_chart": {
+          "headers": [
+            "Size (A)",
+            "To Fit Waist (B)",
+            "To Fit Hip (C)",
+            "Inseam(D)"
+          ],
+          "rows": [
+            {
+              "Size (A)": "XS",
+              "To Fit Waist (B)": "67 CM",
+              "To Fit Hip (C)": "91 CM",
+              "Inseam(D)": "74 CM"
+            },
+            {
+              "Size (A)": "S",
+              "To Fit Waist (B)": "72 CM",
+              "To Fit Hip (C)": "96 CM",
+              "Inseam(D)": "74 CM"
+            },
+            {
+              "Size (A)": "M",
+              "To Fit Waist (B)": "77 CM",
+              "To Fit Hip (C)": "101 CM",
+              "Inseam(D)": "74 CM"
+            },
+            {
+              "Size (A)": "L",
+              "To Fit Waist (B)": "82 CM",
+              "To Fit Hip (C)": "106 CM",
+              "Inseam(D)": "74 CM"
+            },
+            {
+              "Size (A)": "XL",
+              "To Fit Waist (B)": "87 CM",
+              "To Fit Hip (C)": "111 CM",
+              "Inseam(D)": "74 CM"
+            },
+            {
+              "Size (A)": "2XL",
+              "To Fit Waist (B)": "92 CM",
+              "To Fit Hip (C)": "116 CM",
+              "Inseam(D)": "74 CM"
+            }
+          ]
+        }
+      },
+      {
+        "product_title": "Bombay Paisley Red Embroidered Cotton-Blend A-Line Dress",
+        "product_url": "https://www.westside.com/products/bombay-paisley-red-embroidered-cotton-blend-a-line-dress-301025228",
+        "size_chart": {
+          "headers": [
+            "Size (A)",
+            "To Fit Bust (B)",
+            "To Fit Waist (C)",
+            "To Fit Hip (D)"
+          ],
+          "rows": [
+            {
+              "Size (A)": "XXS",
+              "To Fit Bust (B)": "78 CM",
+              "To Fit Waist (C)": "62 CM",
+              "To Fit Hip (D)": "86 CM"
+            },
+            {
+              "Size (A)": "XS",
+              "To Fit Bust (B)": "83 CM",
+              "To Fit Waist (C)": "67 CM",
+              "To Fit Hip (D)": "91 CM"
+            },
+            {
+              "Size (A)": "S",
+              "To Fit Bust (B)": "88 CM",
+              "To Fit Waist (C)": "72 CM",
+              "To Fit Hip (D)": "96 CM"
+            },
+            {
+              "Size (A)": "M",
+              "To Fit Bust (B)": "93 CM",
+              "To Fit Waist (C)": "77 CM",
+              "To Fit Hip (D)": "101 CM"
+            },
+            {
+              "Size (A)": "L",
+              "To Fit Bust (B)": "98 CM",
+              "To Fit Waist (C)": "82 CM",
+              "To Fit Hip (D)": "106 CM"
+            },
+            {
+              "Size (A)": "XL",
+              "To Fit Bust (B)": "103 CM",
+              "To Fit Waist (C)": "87 CM",
+              "To Fit Hip (D)": "111 CM"
+            },
+            {
+              "Size (A)": "2XL",
+              "To Fit Bust (B)": "108 CM",
+              "To Fit Waist (C)": "92 CM",
+              "To Fit Hip (D)": "116 CM"
+            }
+          ]
+        }
+      },
+      {
+        "product_title": "LUNA BLU Sage Bow-Detailed Flip-Flop",
+        "product_url": "https://www.westside.com/products/luna-blu-sage-bow-detailed-flip-flop-301025036",
+        "size_chart": {
+          "headers": [
+            "Foot Length(cm) (A)",
+            "IND-UK(B)",
+            "Us Size (C)",
+            "Euro Size (D)"
+          ],
+          "rows": [
+            {
+              "Foot Length(cm) (A)": "22.5",
+              "IND-UK(B)": "3 CM",
+              "Us Size (C)": "6 CM",
+              "Euro Size (D)": "36 CM"
+            },
+            {
+              "Foot Length(cm) (A)": "23.5",
+              "IND-UK(B)": "4 CM",
+              "Us Size (C)": "6.5 CM",
+              "Euro Size (D)": "37 CM"
+            },
+            {
+              "Foot Length(cm) (A)": "24",
+              "IND-UK(B)": "4.5 CM",
+              "Us Size (C)": "7.5 CM",
+              "Euro Size (D)": "38 CM"
+            },
+            {
+              "Foot Length(cm) (A)": "25",
+              "IND-UK(B)": "5.5 CM",
+              "Us Size (C)": "8.5 CM",
+              "Euro Size (D)": "39 CM"
+            },
+            {
+              "Foot Length(cm) (A)": "25.5",
+              "IND-UK(B)": "6 CM",
+              "Us Size (C)": "9 CM",
+              "Euro Size (D)": "40 CM"
+            },
+            {
+              "Foot Length(cm) (A)": "26.5",
+              "IND-UK(B)": "7 CM",
+              "Us Size (C)": "9.5 CM",
+              "Euro Size (D)": "41 CM"
+            }
+          ]
+        }
+      },
+      {
+        "product_title": "SOLEPLAY Beige Colour-Blocked Lace-up Sneakers",
+        "product_url": "https://www.westside.com/products/soleplay-beige-colour-blocked-lace-up-sneakers-301025290",
+        "size_chart": {
+          "headers": [
+            "Foot Length(cm) (A)",
+            "IND - UK (B)",
+            "Us - Size (C)",
+            "Euro - Size (D)",
+            "Fit (E)"
+          ],
+          "rows": [
+            {
+              "Foot Length(cm) (A)": "25",
+              "IND - UK (B)": "6 CM",
+              "Us - Size (C)": "7 CM",
+              "Euro - Size (D)": "40 CM",
+              "Fit (E)": "Regular CM"
+            },
+            {
+              "Foot Length(cm) (A)": "26",
+              "IND - UK (B)": "7 CM",
+              "Us - Size (C)": "8 CM",
+              "Euro - Size (D)": "41 CM",
+              "Fit (E)": "Regular CM"
+            },
+            {
+              "Foot Length(cm) (A)": "26.5",
+              "IND - UK (B)": "8 CM",
+              "Us - Size (C)": "9 CM",
+              "Euro - Size (D)": "42 CM",
+              "Fit (E)": "Regular CM"
+            },
+            {
+              "Foot Length(cm) (A)": "27.5",
+              "IND - UK (B)": "9 CM",
+              "Us - Size (C)": "10 CM",
+              "Euro - Size (D)": "43 CM",
+              "Fit (E)": "Regular CM"
+            },
+            {
+              "Foot Length(cm) (A)": "28",
+              "IND - UK (B)": "10 CM",
+              "Us - Size (C)": "11 CM",
+              "Euro - Size (D)": "44 CM",
+              "Fit (E)": "Regular CM"
+            },
+            {
+              "Foot Length(cm) (A)": "29",
+              "IND - UK (B)": "11 CM",
+              "Us - Size (C)": "12 CM",
+              "Euro - Size (D)": "45 CM",
+              "Fit (E)": "Regular CM"
+            }
+          ]
+        }
+      },
+      {
+        "product_title": "Utsa Kids Aqua Floral Cotton-Blend Tiered Dress - (2-8yrs)",
+        "product_url": "https://www.westside.com/products/utsa-kids-aqua-floral-cotton-blend-tiered-dress-2-8yrs-301022327",
+        "size_chart": {
+          "headers": [
+            "Size (A)",
+            "Fit To Chest (B)",
+            "Fit To Waist (C)",
+            "Fit To Hip (D)",
+            "Fit To Shoulder (E)"
+          ],
+          "rows": [
+            {
+              "Size (A)": "2 Years",
+              "Fit To Chest (B)": "53.0 CM",
+              "Fit To Waist (C)": "50.5 CM",
+              "Fit To Hip (D)": "55.5 CM",
+              "Fit To Shoulder (E)": "24.5 CM"
+            },
+            {
+              "Size (A)": "3-4 Years",
+              "Fit To Chest (B)": "55.0 CM",
+              "Fit To Waist (C)": "52.5 CM",
+              "Fit To Hip (D)": "57.5 CM",
+              "Fit To Shoulder (E)": "26.5 CM"
+            },
+            {
+              "Size (A)": "5-6 Years",
+              "Fit To Chest (B)": "57.0 CM",
+              "Fit To Waist (C)": "54.5 CM",
+              "Fit To Hip (D)": "59.5 CM",
+              "Fit To Shoulder (E)": "28.5 CM"
+            },
+            {
+              "Size (A)": "7-8 Years",
+              "Fit To Chest (B)": "59.0 CM",
+              "Fit To Waist (C)": "56.5 CM",
+              "Fit To Hip (D)": "61.5 CM",
+              "Fit To Shoulder (E)": "30.5 CM"
+            }
+          ]
+        }
+      }
+    ]
+  }
+]
